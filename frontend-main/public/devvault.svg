@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Background -->
+  <rect width="512" height="512" rx="112" fill="#0b1326" />
+  
+  <!-- Vault Door Outer Ring -->
+  <circle cx="256" cy="256" r="160" fill="none" stroke="#adc6ff" stroke-width="24" opacity="0.8" />
+  
+  <!-- Stylized V / Code Brackets -->
+  <path d="M 176 184 L 256 344 L 336 184" fill="none" stroke="#adc6ff" stroke-width="48" stroke-linecap="round" stroke-linejoin="round" />
+  
+  <!-- Outer accents mimicking vault dial -->
+  <circle cx="256" cy="64" r="12" fill="#4edea3" />
+  <circle cx="256" cy="448" r="12" fill="#424754" />
+  <circle cx="64" cy="256" r="12" fill="#424754" />
+  <circle cx="448" cy="256" r="12" fill="#424754" />
+</svg>
