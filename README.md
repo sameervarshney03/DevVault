@@ -7,7 +7,6 @@ A MERN-based GitHub replica with a custom version control system implementation.
 DevVault is a full-stack platform designed to mimic the core features of GitHub. It allows developers to create repositories, track issues, submit pull requests, and manage project code within a highly responsive, modern UI built on React and Tailwind CSS.
 
 ---
-
 ## 🛠️ Tech Stack
 
 **Frontend:**
