@@ -1,0 +1,17 @@
+# Global OS Files
+.DS_Store
+Thumbs.db
+
+# Environment Variables
+.env
+.env.*.local
+
+# Node modules
+node_modules/
+
+# Build artifacts
+dist/
+build/
+
+# Custom Tracking
+.apnaGit/
