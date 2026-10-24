@@ -1,4 +1,4 @@
-# DevVault (GitHub Clone)
+# DevVault
 
 A MERN-based GitHub replica with a custom version control system implementation. Built with a premium, IDE-like "Midnight & Slate" dark theme, it brings a sleek developer experience to version management.
 

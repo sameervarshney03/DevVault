@@ -1,7 +1,7 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "Git Clone",
+  "description": "DevVault",
   "main": "index.js",
   "bin": {
     "devvault": "./index.js"
