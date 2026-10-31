@@ -5,13 +5,14 @@ const Issue = require("../models/issueModel");
 
 async function createRepository(req, res) {
   const { owner, name, issues, content, description, visibility } = req.body;
+  const repoOwner = req.user?.id || owner;
 
   try {
     if (!name) {
       return res.status(400).json({ error: "Repository name is required!" });
     }
 
-    if (!mongoose.Types.ObjectId.isValid(owner)) {
+    if (!mongoose.Types.ObjectId.isValid(repoOwner)) {
       return res.status(400).json({ error: "Invalid User ID!" });
     }
 
@@ -19,7 +20,7 @@ async function createRepository(req, res) {
       name,
       description,
       visibility,
-      owner,
+      owner: repoOwner,
       content,
       issues,
     });
@@ -158,7 +159,7 @@ async function deleteRepositoryById(req, res) {
 
 async function toggleStar(req, res) {
   const { id } = req.params;
-  const { currentUserId } = req.body;
+  const currentUserId = req.user?.id || req.body.currentUserId;
   try {
     const user = await User.findById(currentUserId);
     if (!user) {
@@ -180,7 +181,6 @@ async function toggleStar(req, res) {
 
 async function getFileTree(req, res) {
   const { id } = req.params;
-  // This is a placeholder for actual S3 fetch logic
   res.status(200).json([{ type: 'file', name: 'README.md', content: '# Repository' }]);
 }
 

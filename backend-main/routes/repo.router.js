@@ -1,17 +1,22 @@
 const express = require("express");
 const repoController = require("../controllers/repoController");
+const authMiddleware = require("../middleware/authMiddleware");
+const { authorizeRepoOwner } = require("../middleware/authorizeMiddleware");
 
 const repoRouter = express.Router();
 
-repoRouter.post("/repo/create", repoController.createRepository);
 repoRouter.get("/repo/all", repoController.getAllRepositories);
 repoRouter.get("/repo/:id", repoController.fetchRepositoryById);
 repoRouter.get("/repo/name/:name", repoController.fetchRepositoryByName);
 repoRouter.get("/repo/user/:userID", repoController.fetchRepositoriesForCurrentUser);
-repoRouter.put("/repo/update/:id", repoController.updateRepositoryById);
-repoRouter.delete("/repo/delete/:id", repoController.deleteRepositoryById);
-repoRouter.patch("/repo/toggle/:id", repoController.toggleVisibilityById);
-repoRouter.post("/repo/star/:id", repoController.toggleStar);
 repoRouter.get("/repo/:id/tree", repoController.getFileTree);
 
+repoRouter.post("/repo/create", authMiddleware, repoController.createRepository);
+repoRouter.post("/repo/star/:id", authMiddleware, repoController.toggleStar);
+
+repoRouter.put("/repo/update/:id", authMiddleware, authorizeRepoOwner, repoController.updateRepositoryById);
+repoRouter.delete("/repo/delete/:id", authMiddleware, authorizeRepoOwner, repoController.deleteRepositoryById);
+repoRouter.patch("/repo/toggle/:id", authMiddleware, authorizeRepoOwner, repoController.toggleVisibilityById);
+
 module.exports = repoRouter;
+

@@ -9,7 +9,6 @@ dotenv.config();
 async function signup(req, res) {
   const { username, password, email } = req.body;
   try {
-    // Check if user already exists
     const existingUser = await User.findOne({ $or: [{ username }, { email }] });
     if (existingUser) {
       return res.status(400).json({ message: "User already exists!" });
@@ -147,7 +146,7 @@ async function deleteUserProfile(req, res) {
 
 async function followUser(req, res) {
   const { id } = req.params;
-  const { currentUserId } = req.body;
+  const currentUserId = req.user?.id || req.body.currentUserId;
 
   if (!mongoose.Types.ObjectId.isValid(id) || !mongoose.Types.ObjectId.isValid(currentUserId)) {
     return res.status(400).json({ message: "Invalid user ID" });
@@ -166,7 +165,7 @@ async function followUser(req, res) {
 
 async function unfollowUser(req, res) {
   const { id } = req.params;
-  const { currentUserId } = req.body;
+  const currentUserId = req.user?.id || req.body.currentUserId;
 
   if (!mongoose.Types.ObjectId.isValid(id) || !mongoose.Types.ObjectId.isValid(currentUserId)) {
     return res.status(400).json({ message: "Invalid user ID" });
